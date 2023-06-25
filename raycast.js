@@ -19,7 +19,8 @@ class Vertex {
 
 /*
     Vertex is the graphics side of the map.  The player exist somewhere on this.
-
+    computer graphics typically have the origin in the upper left corner, I don't want to do that.
+    I will put my origin for this map in the lower left hand corner.  fite me
 */
 
 class VertexMap {
@@ -34,10 +35,17 @@ class VertexMap {
             // validate that all the vertices are within bounds for the map
             // fist use some highly complex map to define the map as a closed area 
             // assume the map is rectangle 
-            debugger
-            let mapSpace = Vector(this.mapSizeX,this.mapSizeY)
-            this.mapVertices.forEach((vertex) = {
-
+            
+            let mapSpace = vec(this.mapSizeX,this.mapSizeY)
+            this.mapVertices.forEach((vertex) => {
+                let vStart = vertex.pStart
+                let vEnd = vertex.pEnd
+                // subtract vStart and Vend from mapSpace and find the magnitues
+                // if the magnitudes are both positive then this works
+                if(mapSpace.sub(vStart).mag() < 0 && mapSpace.sub(vEnd).mag() < 0){
+                    // then do something. Maybe throw an exspection or something
+                    // TODO: figure out something to do here!
+                } 
             })            
         }
     }

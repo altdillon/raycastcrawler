@@ -57,3 +57,12 @@ class Vector {
         return dotProduct
     }
 }
+
+/*
+    I don't feel like typing vector out all the time
+    here's a little helper function
+*/
+
+function vec(x,y,mag,angle){
+    return new Vector(x,y,mag,angle)
+}

@@ -7,10 +7,21 @@
 
     /*
         holds some handy settings for what we're doing with the game and whatnot
+        world x and y don't really relate to any real world units  
     */
 
     let gameSettings = {
-        showFPS: true // frames per second
+        showFPS: true, // frames per second
+        worldX: 800,
+        worldY: 600
+    }
+
+    /*
+        hold some basic global stuff for gamestate 
+    */
+
+    let gameState = {
+        worldMap: {}
     }
 
     /*
@@ -19,7 +30,23 @@
     */
 
     function gameinit(){
-
+        gameState.worldMap = new VertexMap(gameSettings.worldX,gameSettings.worldY,(maps) =>{
+            // make a box... 
+            // this is a test
+            let p1 = vec(40,40)
+            let p2 = vec(60,40)
+            let p3 = vec(40,60)
+            let p4 = vec(60,60)
+            let v1 = new Vertex(p1,p2,"red")
+            let v2 = new Vertex(p2,p3,"green")
+            let v3 = new Vertex(p3,p4,"yellow")
+            let v4 = new Vertex(p4,p1,"blue")
+            // draw the box to a vertex map
+            maps.push(v1)
+            maps.push(v2)
+            maps.push(v3)
+            maps.push(v4)
+        })
     }
         
    // onload event to setup the canvas window
