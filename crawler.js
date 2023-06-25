@@ -13,7 +13,10 @@
     let gameSettings = {
         showFPS: true, // frames per second
         worldX: 800,
-        worldY: 600
+        worldY: 600,
+        // mini map size in pixles 
+        miniMapSizeX: 200,
+        miniMapSizeY: 200
     }
 
     /*
@@ -21,7 +24,8 @@
     */
 
     let gameState = {
-        worldMap: {}
+        worldMap: {},
+        miniMap: {}
     }
 
     /*
@@ -30,6 +34,7 @@
     */
 
     function gameinit(){
+        // init the world map
         gameState.worldMap = new VertexMap(gameSettings.worldX,gameSettings.worldY,(maps) =>{
             // make a box... 
             // this is a test
@@ -47,6 +52,8 @@
             maps.push(v3)
             maps.push(v4)
         })
+        // init the minimap
+        gameState.miniMap = new MiniMap(gameSettings.miniMapSizeX,gameSettings.miniMapSizeY,10,10) 
     }
         
    // onload event to setup the canvas window
@@ -92,8 +99,7 @@
                     frameInfo.frameCounter ++
                 }
 
-                //ctx.clearRect(0,0, window.innerHeight,window.innerWidth)
-                //ctx.fillStyle = 'black'
+                // blank the screen before we do anything
                 ctx.clearRect(0,0,window.outerWidth,window.outerWidth)
                 // display the current frame rate in the upper right hand side of the screen
                 if(gameSettings.showFPS){
@@ -104,8 +110,9 @@
                     //ctx.fillStyle = 'yellow'
                     ctx.fillText("FPS: "+frameInfo.lastFrameCount,fpsX,fpsY)
                 }
-
-                // before we draw anything bank the screen 
+                // start drawing game elements 
+                gameState.miniMap.render(ctx,gameState.worldMap) // render the minimap
+                
                 window.requestAnimationFrame(drawloop)
             }
 

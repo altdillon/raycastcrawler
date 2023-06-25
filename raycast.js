@@ -62,12 +62,12 @@ class MiniMap{
     constructor(minimapSizeX,minimapSizeY,posX,posY){
         this.minimapSizeX = minimapSizeX
         this.minimapSizeY = minimapSizeY
-        this.posX = posX
-        this.posY = posY
+        this.pos = vec(posX,posY)
     }
 
-    render(ctx){
-
+    render(ctx,worldmap){
+        ctx.stokeStyle = 'Black'
+        ctx.strokeRect(this.pos.x,this.pos.y,this.minimapSizeX,this.minimapSizeY)
     }
 }
 
