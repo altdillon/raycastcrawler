@@ -53,9 +53,23 @@ class VertexMap {
 }
 
 /*
-    Minimap object, draws a minimap in the top of the screen 
+    Minimap object, draws a minimap somewhere on the screen
+    This is no way interacts with the game world, but it's still part of the canvas
 
 */
+
+class MiniMap{
+    constructor(minimapSizeX,minimapSizeY,posX,posY){
+        this.minimapSizeX = minimapSizeX
+        this.minimapSizeY = minimapSizeY
+        this.posX = posX
+        this.posY = posY
+    }
+
+    render(ctx){
+
+    }
+}
 
 /*
     RayCaster is the class for puting the actual ray cast on the screen
@@ -78,7 +92,7 @@ class RayCaster{
         walls ever become an option
     */
 
-    raycast(orgPos){
+    raycast(ctx,orgPos){
 
     }
 }
