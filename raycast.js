@@ -65,9 +65,15 @@ class MiniMap{
         this.pos = vec(posX,posY)
     }
 
+    drawPlayer(playerPos,playerAngle){
+
+    }
+
     render(ctx,worldmap){
         ctx.stokeStyle = 'Black'
         ctx.strokeRect(this.pos.x,this.pos.y,this.minimapSizeX,this.minimapSizeY)
+        // draw the player at localtion 0,0 on the minimap
+        // player is a just a triangle
     }
 }
 
