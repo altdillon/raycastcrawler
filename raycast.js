@@ -17,7 +17,6 @@ class Vertex {
 }
 
 
-
 /*
     Vertex is the graphics side of the map.  The player exist somewhere on this.
 
@@ -33,7 +32,13 @@ class VertexMap {
             // if generate map is defined then use that function to add an object
             generatemaps(this.mapVertices)
             // validate that all the vertices are within bounds for the map
-            
+            // fist use some highly complex map to define the map as a closed area 
+            // assume the map is rectangle 
+            debugger
+            let mapSpace = Vector(this.mapSizeX,this.mapSizeY)
+            this.mapVertices.forEach((vertex) = {
+
+            })            
         }
     }
 }

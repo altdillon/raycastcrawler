@@ -12,32 +12,16 @@
     let gameSettings = {
         showFPS: true // frames per second
     }
+
     /*
-        Draw loop for the game
+        init function,
+        just some basic functionality to handle some setups for game logic 
     */
-    // let frameCounter = 0
-    // let frameTime = 0
-    // let lastTime = 0
-    // let lastFrameCount = 0  // value of the last frame count
-    // function drawloop() {
-    //     let dt = (Date.now() - lastTime)/1000.0;
-    //     lastTime = Date.now()
-    //     // figure out the frame count
-    //     if(frameTime > 1.0){
-    //         lastFrameCount = frameCounter
-    //         frameCounter = 0
-    //         frameTime = 0
-    //     }else{
-    //         // add dt and count up the number of frames
-    //         frameTime += dt
-    //         frameCounter++
-    //     }
-    //     // draw the frame count to the upper right hand corner of the screen
 
+    function gameinit(){
 
-    //     window.requestAnimationFrame(drawloop)
-    // }
-
+    }
+        
    // onload event to setup the canvas window
     window.onload = () => {
         let canvas = document.getElementById('gamecanvas')
@@ -58,6 +42,12 @@
                 lastFrameCount: 0.0,
                 frameTime: 0.0
             }
+
+            /* 
+                Drawloop for our world 
+                handle handle some screen updates and maybe draw the FPS
+            */
+
             function drawloop(){
                 
                 
@@ -80,20 +70,20 @@
                 ctx.clearRect(0,0,window.outerWidth,window.outerWidth)
                 // display the current frame rate in the upper right hand side of the screen
                 if(gameSettings.showFPS){
-                    ctx.font = '28px serif' // just pulled from an exsample
+                    ctx.font = '20px serif' // just pulled from an exsample
                     // parametricly figure out where to put the fps count
-                    let fpsX = window.outerWidth - window.outerWidth/14
-                    let fpsY = window.innerHeight / 10
+                    let fpsX = Math.floor(window.outerWidth - window.outerWidth/14)
+                    let fpsY = Math.floor(window.innerHeight / 20)
                     //ctx.fillStyle = 'yellow'
                     ctx.fillText("FPS: "+frameInfo.lastFrameCount,fpsX,fpsY)
                 }
 
-                // before we draw anything bank the screen
-                
+                // before we draw anything bank the screen 
                 window.requestAnimationFrame(drawloop)
             }
 
-
+            // after the screen had been setup, init the game logic and kick off the drawloop
+            gameinit()
             window.requestAnimationFrame(drawloop) 
         } else {
             alert("could not get canvas contest");
