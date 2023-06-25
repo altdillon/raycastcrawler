@@ -1,4 +1,5 @@
 
+
 /*
     A vertex is kind of the basic unit of anything on the map.  A vertex can either be part of a closed or open shape
     A vertex is basicly a vector that runs between two points.  We can either have a vertex that can exist between two points
@@ -50,6 +51,11 @@ class VertexMap {
         }
     }
 }
+
+/*
+    Minimap object, draws a minimap in the top of the screen 
+
+*/
 
 /*
     RayCaster is the class for puting the actual ray cast on the screen
