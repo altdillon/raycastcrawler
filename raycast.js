@@ -33,7 +33,7 @@ class VertexMap {
             // if generate map is defined then use that function to add an object
             generatemaps(this.mapVertices)
             // validate that all the vertices are within bounds for the map
-
+            
         }
     }
 }
@@ -44,12 +44,22 @@ class VertexMap {
 
 class RayCaster{
 
-    constructor(windowWidth,windowHeight){
+    constructor(windowWidth,windowHeight,fov,raycastpoints){
+        // how many pixes to draw the window
         this.windowHeight = windowHeight
         this.windowWidth = windowWidth
+        // ray casting paramaters, fox and how many rays to cast with
+        this.fov = fov
+        this.raycastpoints = raycastpoints
     }
 
-    raycast(){
+    /*
+        This is the main raycasting function.  This takes a position at vector orgPos and then draws out the ray cast functions from that point
+        this function will try to be be somewhat future proof.  ray hit detection will rely on a recurisve function that will be usefull if variable height 
+        walls ever become an option
+    */
+
+    raycast(orgPos){
 
     }
 }
