@@ -94,7 +94,7 @@
                 miniMap: {},
                 player: {
                     dir: vec(0,1),
-                    pos: vec(0,0),
+                    pos: vec(50,50),
                     ds: 0.1
                }
             }
@@ -132,9 +132,8 @@
                     ctx.fillText("FPS: "+frameInfo.lastFrameCount,fpsX,fpsY)
                 }
                 // start drawing game elements 
-                gameState.miniMap.render(ctx,gameState.worldMap,gameState.player) // render the minimap
-                
-                window.requestAnimationFrame(drawloop)
+                gameState.miniMap.render(ctx,gameState.worldMap,gameState.player) // render the minimap 
+                window.requestAnimationFrame(drawloop) // kick off the loop
             }
 
             // after the screen had been setup, init the game logic and kick off the drawloop

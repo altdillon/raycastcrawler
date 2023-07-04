@@ -55,7 +55,7 @@ class VertexMap {
 /*
     Minimap object, draws a minimap somewhere on the screen
     This is no way interacts with the game world, but it's still part of the canvas
-
+    basicly just show where the player is in space
 */
 
 class MiniMap{
@@ -65,14 +65,27 @@ class MiniMap{
         this.pos = vec(posX,posY)
     }
 
+    /*
+        helper method/function for maping the location of the player on the cap world to where the player is on the mini map
+    */
+    mapPlayer2Minimap(playerPos){
+        let minX = this.pos.x 
+        let maxX = this.minimapSizeX
+        let minY = this.pos.y
+        let maxY = this.minimapSizeY
+
+    }
+
     // draw the player on the mini map
     drawPlayer(ctx,playerPos,playerAngle){
         // draw a box at player pos
         let sizeX = 10
         let sizeY = 10
-        let centerX = playerPos.x - sizeX/2
-        let centerY = playerPos.y - sizeY/2
-        // draw a rect 
+        let cornerX = playerPos.x - sizeX/2
+        let cornerY = playerPos.y - sizeY/2
+        // draw a rect
+        ctx.fillStyle = 'black'
+        ctx.fillRect(cornerX,cornerY,sizeX,sizeY)
     }
 
     // render a player on the mini map
