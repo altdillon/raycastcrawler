@@ -65,15 +65,22 @@ class MiniMap{
         this.pos = vec(posX,posY)
     }
 
-    drawPlayer(playerPos,playerAngle){
-
+    // draw the player on the mini map
+    drawPlayer(ctx,playerPos,playerAngle){
+        // draw a box at player pos
+        let sizeX = 10
+        let sizeY = 10
+        let centerX = playerPos.x - sizeX/2
+        let centerY = playerPos.y - sizeY/2
+        // draw a rect 
     }
 
-    render(ctx,worldmap){
+    // render a player on the mini map
+    render(ctx,worldmap,player){
         ctx.stokeStyle = 'Black'
         ctx.strokeRect(this.pos.x,this.pos.y,this.minimapSizeX,this.minimapSizeY)
         // draw the player at localtion 0,0 on the minimap
-        // player is a just a triangle
+        this.drawPlayer(ctx,player.pos,player.dir)
     }
 }
 

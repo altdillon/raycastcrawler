@@ -21,21 +21,26 @@
 
     /*
         hold some basic global stuff for gamestate 
+        start out with empty types
     */
 
-    let gameState = {
-        worldMap: {},
-        miniMap: {}
-    }
-
+    // let gameState = {
+    //     worldMap: {},
+    //     miniMap: {},
+    //     player: {
+    //         dir: vec(0,1),
+    //         pos: vec(0,0),
+    //         ds: 0.1
+    //     }
+    // }
     /*
         init function,
         just some basic functionality to handle some setups for game logic 
     */
 
-    function gameinit(){
+    function gameinit(gamestate){
         // init the world map
-        gameState.worldMap = new VertexMap(gameSettings.worldX,gameSettings.worldY,(maps) =>{
+        gamestate.worldMap = new VertexMap(gameSettings.worldX,gameSettings.worldY,(maps) =>{
             // make a box... 
             // this is a test
             let p1 = vec(40,40)
@@ -53,11 +58,13 @@
             maps.push(v4)
         })
         // init the minimap
-        gameState.miniMap = new MiniMap(gameSettings.miniMapSizeX,gameSettings.miniMapSizeY,10,10) 
+        gamestate.miniMap = new MiniMap(gameSettings.miniMapSizeX,gameSettings.miniMapSizeY,10,10) 
     }
         
    // onload event to setup the canvas window
     window.onload = () => {
+
+
         let canvas = document.getElementById('gamecanvas')
         if(canvas.getContext){
             // get window width and height of the window
@@ -77,14 +84,28 @@
                 frameTime: 0.0
             }
 
+
+            /*
+                game state information
+                basicly store preseistant information between games 
+            */  
+            let gameState = {
+                worldMap: {},
+                miniMap: {},
+                player: {
+                    dir: vec(0,1),
+                    pos: vec(0,0),
+                    ds: 0.1
+               }
+            }
+
             /* 
                 Drawloop for our world 
                 handle handle some screen updates and maybe draw the FPS
             */
 
             function drawloop(){
-                
-                
+                 
                 let dt = (Date.now() - frameInfo.lastTime)/1000.0 // compute the delta between this frame and the last one
                 frameInfo.lastTime = Date.now()
                 // figure out if one second has passed
@@ -111,13 +132,13 @@
                     ctx.fillText("FPS: "+frameInfo.lastFrameCount,fpsX,fpsY)
                 }
                 // start drawing game elements 
-                gameState.miniMap.render(ctx,gameState.worldMap) // render the minimap
+                gameState.miniMap.render(ctx,gameState.worldMap,gameState.player) // render the minimap
                 
                 window.requestAnimationFrame(drawloop)
             }
 
             // after the screen had been setup, init the game logic and kick off the drawloop
-            gameinit()
+            gameinit(gameState)
             window.requestAnimationFrame(drawloop) 
         } else {
             alert("could not get canvas contest");
