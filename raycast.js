@@ -66,14 +66,17 @@ class MiniMap{
     }
 
     /*
+        map function cribed from arduino
+    */
+    maphelper(x,in_min,in_max,out_min,out_max){
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+    }
+
+    /*
         helper method/function for maping the location of the player on the cap world to where the player is on the mini map
     */
     mapPlayer2Minimap(playerPos){
-        let minX = this.pos.x 
-        let maxX = this.minimapSizeX
-        let minY = this.pos.y
-        let maxY = this.minimapSizeY
-
+    
     }
 
     // draw the player on the mini map
