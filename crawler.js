@@ -15,8 +15,8 @@
         worldX: 800,
         worldY: 600,
         // mini map size in pixles 
-        miniMapSizeX: 200,
-        miniMapSizeY: 200
+        miniMapSizeX: 800,
+        miniMapSizeY: 800
     }
 
     /*
