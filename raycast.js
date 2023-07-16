@@ -25,6 +25,15 @@ class Vertex {
 */
 
 class VertexMap {
+
+    /*
+        mapSizeX : size of the map in the x axis
+        mapSizeY : size of the map in the y axis
+        generatemaps : call back for instationg a map world
+        ...
+        will take in a list of vertices and make make sure that they all fit in the map world
+    */
+
     constructor(mapSizeX,mapSizeY,generatemaps){
         this.mapSizeX = mapSizeX
         this.mapSizeY = mapSizeY
@@ -72,14 +81,10 @@ class MiniMap{
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
     }
 
-    /*
-        helper method/function for maping the location of the player on the cap world to where the player is on the mini map
-    */
-    mapPlayer2Minimap(playerPos,mapworldsize){
-        let minimap_posx = this.maphelper(playerPos.x,)
-    }
 
-    // draw the player on the mini map
+    /*
+        draw a marker for the player in the center of the mini map
+    */
     drawPlayer(ctx,playerPos,playerdir){
         // draw a box at the center of the minimap
         // first figure out were the center of the map is on the canvas
@@ -89,12 +94,27 @@ class MiniMap{
         ctx.fillRect(minimap_centerX,minimap_centerY,10,10)
     }
 
+    /*
+        go through all the vertices and render them on the minimap
+    */
+    drawVertices(ctx,worldmap,playerpos){
+        // make a vector for the draw distance of the player
+        let drawdist = vec(this.minimapSizeX/2,this.minimapSizeY/2)
+        // iterate through all the world map vertices 
+        worldmap.mapVertices.forEach((vectrix) => {
+            // figure out if the vertex is with in draw distance for the player on the minimap
+        
+        })
+    }
+
     // render a player on the mini map
     render(ctx,worldmap,player){
         ctx.stokeStyle = 'Black'
         ctx.strokeRect(this.pos.x,this.pos.y,this.minimapSizeX,this.minimapSizeY)
         // draw a marker for the player in the center of the box 
         this.drawPlayer(ctx,player.pos,player.dir)
+        // ok, now go through the world map and draw all the vertices on the minimap
+        this.drawVertices(ctx,worldmap,player.pos)
     }
 }
 
