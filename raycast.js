@@ -75,27 +75,25 @@ class MiniMap{
     /*
         helper method/function for maping the location of the player on the cap world to where the player is on the mini map
     */
-    mapPlayer2Minimap(playerPos){
-    
+    mapPlayer2Minimap(playerPos,mapworldsize){
+        let minimap_posx = this.maphelper(playerPos.x,)
     }
 
     // draw the player on the mini map
-    drawPlayer(ctx,playerPos,playerAngle){
-        // draw a box at player pos
-        let sizeX = 10
-        let sizeY = 10
-        let cornerX = playerPos.x - sizeX/2
-        let cornerY = playerPos.y - sizeY/2
-        // draw a rect
-        ctx.fillStyle = 'black'
-        ctx.fillRect(cornerX,cornerY,sizeX,sizeY)
+    drawPlayer(ctx,playerPos,playerdir){
+        // draw a box at the center of the minimap
+        // first figure out were the center of the map is on the canvas
+        let minimap_centerX = this.pos.x + this.minimapSizeX/2
+        let minimap_centerY = this.pos.y + this.minimapSizeY/2
+        // then draw a rect
+        ctx.fillRect(minimap_centerX,minimap_centerY,10,10)
     }
 
     // render a player on the mini map
     render(ctx,worldmap,player){
         ctx.stokeStyle = 'Black'
         ctx.strokeRect(this.pos.x,this.pos.y,this.minimapSizeX,this.minimapSizeY)
-        // draw the player at localtion 0,0 on the minimap
+        // draw a marker for the player in the center of the box 
         this.drawPlayer(ctx,player.pos,player.dir)
     }
 }
