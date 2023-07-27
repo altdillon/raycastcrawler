@@ -59,12 +59,24 @@ class VertexMap {
             })            
         }
     }
+
+    /*
+        get list of vectors points 
+    */
+    getVectorSet(){
+        let vector_list = []
+
+        return vector_list
+   }
 }
 
 /*
     Minimap object, draws a minimap somewhere on the screen
     This is no way interacts with the game world, but it's still part of the canvas
     basicly just show where the player is in space
+    ...
+    minimap sizeX and minimap sizeY is the size in pixes of minimap on the screen
+    posX and posY are the location in pixles
 */
 
 class MiniMap{
@@ -95,6 +107,13 @@ class MiniMap{
     }
 
     /*
+        helper function for converting from game map to canvas pixles
+    */
+    map2canvas(pos){
+        debugger
+    }
+        
+    /*
         go through all the vertices and render them on the minimap
     */
     drawVertices(ctx,worldmap,playerpos){
@@ -102,8 +121,15 @@ class MiniMap{
         let drawdist = vec(this.minimapSizeX/2,this.minimapSizeY/2)
         // iterate through all the world map vertices 
         worldmap.mapVertices.forEach((vectrix) => {
+            // figure out how these the pixes map from the game word to the minimap
+            let mapped_pStart = this.map2canvas(vectrix.pStart)
+            let mapped_pEnd = this.map2canvas(vectrix.pEnd)
             // figure out if the vertex is with in draw distance for the player on the minimap
-        
+            // then draw it to the screen
+            ctx.beginPath()
+            ctx.moveTo(vectrix.pStart.x,vectrix.pEnd.y)
+            ctx.lineTo(vectrix.pEnd.x,vectrix.pEnd.y)
+            ctx.stroke()
         })
     }
 
